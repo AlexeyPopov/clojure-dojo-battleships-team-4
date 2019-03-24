@@ -1,6 +1,6 @@
 (ns multi-client-ws.core
   (:require [reagent.core :as reagent :refer [atom]]
-            [multi-client-ws.websockets :as ws]))
+            [multi-client-ws.websocket :as ws]))
 
 (defonce messages (atom []))
 
@@ -42,15 +42,12 @@
 (defn mount-components []
   (reagent/render-component [#'home-page] (.getElementById js/document "app")))
 
-(defn init! []
-  (ws/make-websocket! (str "ws://" (.-host js/location) "/ws") update-messages!)
-  (mount-components))
-
-(defn mount-components []
+#_(defn mount-components []
   (let [content (js/document.getElementById "app")]
     (while (.hasChildNodes content)
       (.removeChild content (.-lastChild content)))
     (.appendChild content (js/document.createTextNode "Welcome to multi-client-ws"))))
 
 (defn init! []
+  (ws/make-websocket! (str "ws://" (.-host js/location) "/ws") update-messages!)
   (mount-components))
