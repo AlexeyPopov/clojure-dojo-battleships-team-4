@@ -64,7 +64,16 @@ html,body {
   background : lightblue;
 }
 
-
+.bf__row__cell--ship {
+  background : green;
+}
+.bf__row__cell--ship-dmg {
+  background : red;
+}
+.app__fields {
+  display : flex;
+  justify-content: space-around
+}
 .app__header {
   margin: 2rem 0;
 }
